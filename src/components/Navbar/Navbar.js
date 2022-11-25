@@ -4,7 +4,7 @@ import ThemeContext from '../../helpers/Theme'
 const Navbar = () => (
   <ThemeContext.Consumer>
     {
-      theme => (
+      ({ theme, toggleTheme }) => (
         <div className={theme == 'light'?
                       'navbar-bg-light':
                       'navbar-bg-dark'}
@@ -15,7 +15,7 @@ const Navbar = () => (
               <span className='logo'>Where in the world?</span>
             </div>
             <div>
-              <button className='theme-toggler-btn'>Dark Mode</button>
+              <button className='theme-toggler-btn' onClick={toggleTheme}>Dark Mode</button>
             </div>
           </div>
         </div>
