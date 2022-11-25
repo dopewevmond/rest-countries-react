@@ -1,9 +1,13 @@
-import { render } from 'react-dom'
+import { createRoot } from 'react-dom/client'
+import './App.css'
+import Navbar from './components/Navbar/Navbar'
+import ThemeContext from './helpers/Theme'
 
 const App = () => (
-  <div>
-    App is running
-  </div>
+  <ThemeContext.Provider value='dark'>
+    <Navbar />
+  </ThemeContext.Provider>
 )
 
-render(<App />, document.getElementById('root'))
+const root = createRoot(document.getElementById('root'))
+root.render(<App />)
