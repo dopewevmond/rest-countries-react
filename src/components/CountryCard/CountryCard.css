@@ -1,0 +1,11 @@
+.country-card {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-content: flex-end;
+  margin-bottom: 2rem;
+}
+.country-card-flag-img {
+  width: 100%;
+  height: auto;
+}
