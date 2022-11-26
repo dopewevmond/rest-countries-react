@@ -7,8 +7,8 @@ const CountryCard = ({ flag, name, population, region, capital }) => (
     { /* eslint-disable-next-line no-unused-vars */}
     {({ theme, toggleTheme }) => (
       <div className={theme == 'light' ?
-                    'navbar-bg-light mb-2':
-                    'navbar-bg-dark mb-2'}
+                    'navbar-bg-light mb-2 box-shadow':
+                    'navbar-bg-dark mb-2 box-shadow'}
       >
         <div className='country-card'>
           <div className='country-card-flag-container'>
