@@ -1,8 +1,9 @@
 import { createRoot } from 'react-dom/client'
 import { useState } from 'react'
 import './App.css'
-import Navbar from './components/Navbar/Navbar'
 import ThemeContext from './helpers/Theme'
+import Navbar from './components/Navbar/Navbar'
+import CountriesPage from './components/CountriesPage/CountriesPage'
 
 const App = () => {
   const [T, toggleT] = useState('light')
@@ -16,6 +17,7 @@ const App = () => {
   return (
     <ThemeContext.Provider value={{theme: T, toggleTheme: togglerFunc}}>
       <Navbar />
+      <CountriesPage />
     </ThemeContext.Provider>
   )
 }
