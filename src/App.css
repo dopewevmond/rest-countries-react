@@ -34,6 +34,9 @@ body {
 .pr-1 {
   padding-right: 1rem;
 }
+.mb-2 {
+  margin-bottom: 2rem;
+}
 
 /* for debugging */
 .bg-reddish {
