@@ -28,7 +28,7 @@ const CountryDetailPage = () => {
           capital: (cd.capital && cd.capital[0]) || 'N/A',
           tld: (cd.tld && cd.tld[0]) || 'N/A',
           currencies: cd.currencies || [],
-          languages: (cd.languages && cd.languages.eng) || 'N/A',
+          languages: (cd.languages && Object.keys(cd.languages).map((lang) => cd.languages[lang])) || [],
           borderCountries: cd.borders || [],
           flag: (cd.flags && cd.flags.png) || 'N/A'
         })
@@ -80,7 +80,7 @@ const CountryDetailPage = () => {
                     <div className='sm-mb-1'>
                       <div className='mb-half'><strong>Top Level Domain: </strong>{countryDetails.tld}</div>
                       <div className='mb-half'><strong>Currencies: </strong>{Object.keys(countryDetails.currencies).map((currency, idx) => (<span key={idx}>{countryDetails.currencies[currency].name}</span>))}</div>
-                      <div className='mb-half'><strong>Languages: </strong>{countryDetails.languages}</div>
+                      <div className='mb-half'><strong>Languages: </strong>{countryDetails.languages && countryDetails.languages.map((lang, key) => (<span key={key}>{lang}, </span>))}</div>
                     </div>
                   </div>
                   {/* end of flex column */}
