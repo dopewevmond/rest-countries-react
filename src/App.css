@@ -71,6 +71,12 @@ body {
 .bg-reddish {
   background-color: rgb(225, 92, 92);
 }
+.link-no-decoration {
+  text-decoration: none;
+}
+.blue-border-hover:hover {
+  border: 1px solid blue;
+}
 
 @media only screen and (min-width: 768px) {
   .container {

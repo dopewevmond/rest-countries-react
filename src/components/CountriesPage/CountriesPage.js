@@ -1,5 +1,6 @@
 import './CountriesPage.css'
 import { useState, useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import ThemeContext from "../../helpers/Theme"
 import CountryCard from "../CountryCard/CountryCard"
 
@@ -46,14 +47,15 @@ const CountriesPage = () => {
               <div className="flex-4-cols pt-1">
                 {
                   countries.map(({ flag, name, population, region, capital }) => (
-                    <CountryCard
-                      flag={flag}
-                      name={name}
-                      population={population}
-                      region={region}
-                      capital={capital}
-                      key={name}
-                    />
+                    <Link to={'/' + name.toLowerCase() } key={name} className='link-no-decoration'>
+                      <CountryCard
+                        flag={flag}
+                        name={name}
+                        population={population}
+                        region={region}
+                        capital={capital}
+                      />
+                    </Link>
                   ))
                 }
               </div>
