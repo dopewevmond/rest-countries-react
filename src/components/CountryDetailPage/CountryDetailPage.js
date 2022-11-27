@@ -89,7 +89,7 @@ const CountryDetailPage = () => {
                     <span className='mr-1'><strong>Border countries:</strong></span>
                     <div className='border-countries-container sm-mt-1'>
                       {
-                        countryDetails.borderCountries.map((border, idx) => (
+                        countryDetails.borderCountries && countryDetails.borderCountries.map((border, idx) => (
                           <NeighborCountry name={border} key={idx} />
                         ))
                       }
