@@ -28,6 +28,11 @@
   display: flex;
   flex-flow: column wrap;
 }
+.border-countries-container {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px 0;
+}
 @media only screen and (min-width: 768px) {
   .flex-2-cols {
     display: flex;
