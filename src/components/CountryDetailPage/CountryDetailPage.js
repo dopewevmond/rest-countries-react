@@ -3,6 +3,7 @@ import ThemeContext from '../../helpers/Theme'
 import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import NeighborCountry from '../NeighborCountry/NeighborCountry'
+import Loading from '../Loading/Loading'
 
 const CountryDetailPage = () => {
   const { countryName, countryCode } = useParams()
@@ -108,7 +109,7 @@ const CountryDetailPage = () => {
             </div>
           ) : 
           (
-            <div>loading</div>
+            <Loading />
           )
           }
         </div>
