@@ -25,7 +25,6 @@ const CountriesPage = () => {
     getCountries()
       .then((neededFieldsCountries) => {
         setCountries(neededFieldsCountries)
-        console.log(countries)
       })
       .catch((err) => {
         console.error(err)

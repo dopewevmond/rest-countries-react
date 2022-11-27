@@ -30,7 +30,6 @@ const CountryDetailPage = () => {
           borderCountries: cd.borders || [],
           flag: (cd.flags && cd.flags.png) || 'N/A'
         })
-        console.log(countryDetails)
       })
       .catch((error) => {
         console.error(error)
