@@ -1,8 +1,8 @@
-import './CountryDetail.css'
+import './CountryDetailPage.css'
 import ThemeContext from '../../helpers/Theme'
 import { Link } from 'react-router-dom'
 
-const CountryDetail = () => (
+const CountryDetailPage = () => (
   <ThemeContext.Consumer>
     {/* eslint-disable-next-line no-unused-vars */}
     {({ theme, toggleTheme }) => (
@@ -70,4 +70,4 @@ const CountryDetail = () => (
   </ThemeContext.Consumer>
 )
 
-export default CountryDetail
+export default CountryDetailPage
