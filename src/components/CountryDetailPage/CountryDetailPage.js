@@ -4,11 +4,13 @@ import { Link, useParams } from 'react-router-dom'
 import { useEffect, useState } from 'react'
 import NeighborCountry from '../NeighborCountry/NeighborCountry'
 import Loading from '../Loading/Loading'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
 const CountryDetailPage = () => {
   const { countryCode } = useParams()
   const [countryDetails, setCountryDetails] = useState({})
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const fetchCountryDetails = async () => {
@@ -32,9 +34,11 @@ const CountryDetailPage = () => {
           borderCountries: cd.borders || [],
           flag: (cd.flags && cd.flags.png) || 'N/A'
         })
+        setError(false)
       })
       .catch((error) => {
         console.error(error)
+        setError(true)
       })
       .finally(() => {
         setLoading(false)
@@ -52,56 +56,64 @@ const CountryDetailPage = () => {
         >
           {loading === false ?
           (
-            <div className='container pt-1'>
-              <div className='mb-3'>
-                <span className={theme == 'light' ? 
-                            'navbar-bg-light' : 
-                            'navbar-bg-dark'}
-                >
-                  <Link to='/' className='country-detail-back-btn'>Back</Link>
-                </span>
-              </div>
-              
-              <div className='flex-2-cols'>
-                <div className='country-detail-img-container flex-child-small'>
-                  <img src={countryDetails.flag} alt='country flag' className=''/>
-                </div>
+            <>
+            {
+              error === false ? (
+                <div className='container pt-1'>
+                  <div className='mb-3'>
+                    <span className={theme == 'light' ? 
+                                'navbar-bg-light' : 
+                                'navbar-bg-dark'}
+                    >
+                      <Link to='/' className='country-detail-back-btn'>Back</Link>
+                    </span>
+                  </div>
+                  
+                  <div className='flex-2-cols'>
+                    <div className='country-detail-img-container flex-child-small'>
+                      <img src={countryDetails.flag} alt='country flag' className=''/>
+                    </div>
 
-                <div className='country-detail-details-container flex-child-large'>
-                  <div className='country-detail-big-text mb-1 sm-pt-1'><strong>{countryDetails.name}</strong></div>
-                  <div className='flex-2-cols align-items-start country-detail-small-text mb-1'>
-                    <div className='sm-mb-1'>
-                      <div className='mb-half'><strong>Native name: </strong>{countryDetails.nativeName}</div>
-                      <div className='mb-half'><strong>Population: </strong>{countryDetails.population}</div>
-                      <div className='mb-half'><strong>Region: </strong>{countryDetails.region}</div>
-                      <div className='mb-half'><strong>Sub-region: </strong>{countryDetails.subregion}</div>
-                      <div className='mb-half'><strong>Capital: </strong>{countryDetails.capital}</div>
-                    </div>
-                    <div className='sm-mb-1'>
-                      <div className='mb-half'><strong>Top Level Domain: </strong>{countryDetails.tld}</div>
-                      <div className='mb-half'><strong>Currencies: </strong>{Object.keys(countryDetails.currencies).map((currency, idx) => (<span key={idx}>{countryDetails.currencies[currency].name}</span>))}</div>
-                      <div className='mb-half'><strong>Languages: </strong>{countryDetails.languages && countryDetails.languages.map((lang, key) => (<span key={key}>{lang}, </span>))}</div>
-                    </div>
-                  </div>
-                  {/* end of flex column */}
+                    <div className='country-detail-details-container flex-child-large'>
+                      <div className='country-detail-big-text mb-1 sm-pt-1'><strong>{countryDetails.name}</strong></div>
+                      <div className='flex-2-cols align-items-start country-detail-small-text mb-1'>
+                        <div className='sm-mb-1'>
+                          <div className='mb-half'><strong>Native name: </strong>{countryDetails.nativeName}</div>
+                          <div className='mb-half'><strong>Population: </strong>{countryDetails.population}</div>
+                          <div className='mb-half'><strong>Region: </strong>{countryDetails.region}</div>
+                          <div className='mb-half'><strong>Sub-region: </strong>{countryDetails.subregion}</div>
+                          <div className='mb-half'><strong>Capital: </strong>{countryDetails.capital}</div>
+                        </div>
+                        <div className='sm-mb-1'>
+                          <div className='mb-half'><strong>Top Level Domain: </strong>{countryDetails.tld}</div>
+                          <div className='mb-half'><strong>Currencies: </strong>{Object.keys(countryDetails.currencies).map((currency, idx) => (<span key={idx}>{countryDetails.currencies[currency].name}</span>))}</div>
+                          <div className='mb-half'><strong>Languages: </strong>{countryDetails.languages && countryDetails.languages.map((lang, key) => (<span key={key}>{lang}, </span>))}</div>
+                        </div>
+                      </div>
+                      {/* end of flex column */}
 
-                  <div className='country-detail-small-text sm-pb-4'>
-                  <div className='mb-half country-detail-flex-colmobile-rowtab'>
-                    <span className='mr-1 mb-1'><strong>Border countries:</strong></span>
-                    <div className='border-countries-container sm-mt-1'>
-                      {
-                        countryDetails.borderCountries && countryDetails.borderCountries.map((border, idx) => (
-                          <Link to={'/code/' + border.toLowerCase()} key={idx} className='link-no-decoration'>
-                            <NeighborCountry name={border} />
-                          </Link>
-                        ))
-                      }
+                      <div className='country-detail-small-text sm-pb-4'>
+                      <div className='mb-half country-detail-flex-colmobile-rowtab'>
+                        <span className='mr-1 mb-1'><strong>Border countries:</strong></span>
+                        <div className='border-countries-container sm-mt-1'>
+                          {
+                            countryDetails.borderCountries && countryDetails.borderCountries.map((border, idx) => (
+                              <Link to={'/code/' + border.toLowerCase()} key={idx} className='link-no-decoration'>
+                                <NeighborCountry name={border} />
+                              </Link>
+                            ))
+                          }
+                        </div>
+                      </div>
+                      </div>
                     </div>
-                  </div>
                   </div>
                 </div>
-              </div>
-            </div>
+              ) : (
+                <ErrorPage />
+              )
+            }
+            </>
           ) : 
           (
             <Loading />

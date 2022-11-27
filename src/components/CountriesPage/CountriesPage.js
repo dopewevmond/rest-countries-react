@@ -4,10 +4,12 @@ import { Link } from 'react-router-dom'
 import ThemeContext from "../../helpers/Theme"
 import CountryCard from "../CountryCard/CountryCard"
 import Loading from '../Loading/Loading'
+import ErrorPage from '../ErrorPage/ErrorPage'
 
 const CountriesPage = () => {
   const [countries, setCountries] = useState([])
   const [loading, setLoading] = useState(true)
+  const [error, setError] = useState(false)
 
   useEffect(() => {
     const getCountries = async () => {
@@ -30,9 +32,11 @@ const CountriesPage = () => {
     getCountries()
       .then((neededFieldsCountries) => {
         setCountries(neededFieldsCountries)
+        setError(false)
       })
       .catch((err) => {
         console.error(err)
+        setError(true)
       })
       .finally(() => {
         setLoading(false)
@@ -52,23 +56,31 @@ const CountriesPage = () => {
           >
             {
               loading === false ? (
-                <div className="container">
-                  <div className="flex-4-cols pt-1">
-                    {
-                      countries.map(({ flag, name, population, region, capital, countryCode }) => (
-                        <Link to={'/code/' + countryCode.toLowerCase() } key={name} className='link-no-decoration'>
-                          <CountryCard
-                            flag={flag}
-                            name={name}
-                            population={population}
-                            region={region}
-                            capital={capital}
-                          />
-                        </Link>
-                      ))
-                    }
-                  </div>
+                <>
+                {
+                  error === false ? (
+                    <div className="container">
+                    <div className="flex-4-cols pt-1">
+                      {
+                        countries.map(({ flag, name, population, region, capital, countryCode }) => (
+                          <Link to={'/code/' + countryCode.toLowerCase() } key={name} className='link-no-decoration'>
+                            <CountryCard
+                              flag={flag}
+                              name={name}
+                              population={population}
+                              region={region}
+                              capital={capital}
+                            />
+                          </Link>
+                        ))
+                      }
+                    </div>
                 </div>
+                  ): (
+                    <ErrorPage />
+                  )
+                }
+                </>
               ) : (
                 <Loading />
               )
