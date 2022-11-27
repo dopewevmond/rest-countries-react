@@ -65,7 +65,26 @@ const CountryDetailPage = () => {
                                 'navbar-bg-light' : 
                                 'navbar-bg-dark'}
                     >
-                      <Link to='/' className='country-detail-back-btn'>Back</Link>
+                      <Link to='/' className='country-detail-back-btn'>
+                      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path 
+                          d="M0.548956 10.4278H19.4286C19.671 10.4278 19.8677 10.2311 19.8677 9.98878C19.8677 9.74641 19.671 9.54971 19.4286 9.54971H0.548956C0.306594 9.54971 0.109894 9.74641 0.109894 9.98878C0.109894 10.2311 0.306594 10.4278 0.548956 10.4278Z"
+                          fill={theme == 'light' ? 
+                              'black' :
+                              'white'}
+                          style={{transition: 'fill 300ms linear'}}
+                        />
+                        <path 
+                          d="M3.54051 13.4194C3.65291 13.4194 3.76509 13.3766 3.85093 13.2908C4.02238 13.1193 4.02238 12.8414 3.85093 12.6699L1.16979 9.98878L3.85093 7.30787C4.02238 7.13641 4.02238 6.85849 3.85093 6.68703C3.67947 6.51558 3.40155 6.51558 3.23009 6.68703L0.238539 9.67836C0.156215 9.76069 0.109894 9.87243 0.109894 9.98878C0.109894 10.1051 0.156215 10.2169 0.238539 10.2992L3.23009 13.2908C3.31593 13.3766 3.42811 13.4194 3.54051 13.4194Z"
+                          fill={theme == 'light' ? 
+                          'black' :
+                          'white'}
+                          style={{transition: 'fill 300ms linear'}}
+                        />
+                      </svg>
+
+                        <span>&nbsp;&nbsp;Back</span>
+                      </Link>
                     </span>
                   </div>
                   
