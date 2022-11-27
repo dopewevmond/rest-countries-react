@@ -1,0 +1,59 @@
+.country-detail-back-btn {
+  display: inline-block;
+  text-decoration: none;
+  box-shadow: 1px 1px 10px 2px rgba(191, 28, 28, 0.046);
+  background-color: inherit;
+  color: inherit;
+  padding: 10px 20px;
+  border-radius: 5px;
+}
+.country-detail-img-container {
+  width: 100%;
+}
+.country-detail-img-container > img {
+  width: 100%;
+  height: auto;
+}
+.country-detail-big-text {
+  font-size: 2rem;
+}
+.country-detail-small-text {
+  font-size: 0.8rem;
+}
+.country-detail-bordercountry-box {
+  padding: 7px 10px;
+  border-radius: 3px;
+}
+.country-detail-flex-colmobile-rowtab {
+  display: flex;
+  flex-flow: column wrap;
+}
+@media only screen and (min-width: 768px) {
+  .flex-2-cols {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+    flex-grow: 1;
+    gap: 4%;
+  }
+  .align-items-start {
+    align-items: flex-start;
+  }
+  .flex-2-cols > * {
+    flex-basis: 48%;
+  }
+  /* overriding the flex basis of 48% since we want the left container to be bigger*/
+  .flex-child-small {
+    flex-basis: 46%;
+  }
+  .flex-child-large {
+    flex-basis: 50%;
+  }
+  .country-detail-details-container {
+    padding-left: 1rem;
+  }
+  .country-detail-flex-colmobile-rowtab {
+    display: flex;
+    flex-flow: row wrap;
+  }
+}
