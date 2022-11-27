@@ -24,11 +24,11 @@ const CountryDetailPage = () => {
           region: cd.region,
           subregion: cd.subregion || 'N/A',
           capital: (cd.capital && cd.capital[0]) || 'N/A',
-          tld: cd.tld[0],
-          currencies: cd.currencies || 'N/A',
-          languages: cd.languages.eng || 'N/A',
-          borderCountries: cd.borders,
-          flag: cd.flags.png
+          tld: (cd.tld && cd.tld[0]) || 'N/A',
+          currencies: cd.currencies || [],
+          languages: (cd.languages && cd.languages.eng) || 'N/A',
+          borderCountries: cd.borders || [],
+          flag: (cd.flags && cd.flags.png) || 'N/A'
         })
         console.log(countryDetails)
       })
