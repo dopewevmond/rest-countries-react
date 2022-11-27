@@ -1,0 +1,20 @@
+.undecorated-link {
+  text-decoration: none;
+  color: blue;
+}
+.undecorated-link:hover {
+  text-decoration: underline;
+}
+
+@media only screen and (min-width: 768px) {
+  .errorpage-pt-md {
+    padding-top: 3rem;
+  }
+  .errorpage-flex-parent {
+    display: flex;
+    flex-flow: row wrap;
+    gap: 1rem 5%;
+    align-items: center;
+    justify-content: flex-start;
+  }
+}
