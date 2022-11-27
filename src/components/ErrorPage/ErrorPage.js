@@ -2,7 +2,7 @@ import './ErrorPage.css'
 import ThemeContext from "../../helpers/Theme"
 import { Link } from 'react-router-dom'
 
-const ErrorPage = () => (
+const ErrorPage = ({ message }) => (
   <ThemeContext.Consumer>
     {/* eslint-disable-next-line no-unused-vars */}
     {({ theme, toggleTheme }) => (
@@ -35,7 +35,12 @@ const ErrorPage = () => (
             </div>
 
             <div className="errormessage-container">
-              Oops...An error occurred. Click <Link to='/' className='undecorated-link'>here</Link> to go back to the homepage.
+              <p>
+                Oops...An error occurred. 
+                <br />
+                {message && message + '. '} 
+                Click <Link to='/' className='undecorated-link'>here</Link> to go back to the homepage.
+              </p>
             </div>
           </div>  
         </div>

@@ -110,7 +110,7 @@ const CountryDetailPage = () => {
                   </div>
                 </div>
               ) : (
-                <ErrorPage />
+                <ErrorPage message='Check your network and the country code, and try again' />
               )
             }
             </>
