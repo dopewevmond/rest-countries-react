@@ -6,19 +6,14 @@ import NeighborCountry from '../NeighborCountry/NeighborCountry'
 import Loading from '../Loading/Loading'
 
 const CountryDetailPage = () => {
-  const { countryName, countryCode } = useParams()
+  const { countryCode } = useParams()
   const [countryDetails, setCountryDetails] = useState({})
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchCountryDetails = async () => {
       setLoading(true)
-      let countryDetailsResponse
-      if (countryName) {
-        countryDetailsResponse = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)  
-      } else if (countryCode) {
-        countryDetailsResponse = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
-      }
+      const countryDetailsResponse = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
       const countryDetails = await countryDetailsResponse.json()
       return countryDetails[0]
     }

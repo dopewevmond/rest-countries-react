@@ -21,7 +21,8 @@ const CountriesPage = () => {
           name: cntry.name.common,
           population: cntry.population,
           region: cntry.region,
-          capital: (cntry.capital && cntry.capital[0]) || 'No capital'
+          capital: (cntry.capital && cntry.capital[0]) || 'No capital',
+          countryCode: cntry.cca3
         })
       }
       return neededFieldsCountries
@@ -54,8 +55,8 @@ const CountriesPage = () => {
                 <div className="container">
                   <div className="flex-4-cols pt-1">
                     {
-                      countries.map(({ flag, name, population, region, capital }) => (
-                        <Link to={'/' + name.toLowerCase() } key={name} className='link-no-decoration'>
+                      countries.map(({ flag, name, population, region, capital, countryCode }) => (
+                        <Link to={'/code/' + countryCode.toLowerCase() } key={name} className='link-no-decoration'>
                           <CountryCard
                             flag={flag}
                             name={name}
