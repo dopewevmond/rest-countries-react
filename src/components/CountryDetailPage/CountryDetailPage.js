@@ -5,13 +5,19 @@ import { useEffect, useState } from 'react'
 import NeighborCountry from '../NeighborCountry/NeighborCountry'
 
 const CountryDetailPage = () => {
-  const { countryName } = useParams()
+  const { countryName, countryCode } = useParams()
   const [countryDetails, setCountryDetails] = useState({})
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     const fetchCountryDetails = async () => {
-      const countryDetailsResponse = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)
+      setLoading(true)
+      let countryDetailsResponse
+      if (countryName) {
+        countryDetailsResponse = await fetch(`https://restcountries.com/v3.1/name/${countryName}`)  
+      } else if (countryCode) {
+        countryDetailsResponse = await fetch(`https://restcountries.com/v3.1/alpha/${countryCode}`)
+      }
       const countryDetails = await countryDetailsResponse.json()
       return countryDetails[0]
     }
@@ -38,7 +44,7 @@ const CountryDetailPage = () => {
         setLoading(false)
       })
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
+  }, [countryCode])
 
   return (
     <ThemeContext.Consumer>
@@ -85,11 +91,13 @@ const CountryDetailPage = () => {
 
                   <div className='country-detail-small-text sm-pb-4'>
                   <div className='mb-half country-detail-flex-colmobile-rowtab'>
-                    <span className='mr-1'><strong>Border countries:</strong></span>
+                    <span className='mr-1 mb-1'><strong>Border countries:</strong></span>
                     <div className='border-countries-container sm-mt-1'>
                       {
                         countryDetails.borderCountries && countryDetails.borderCountries.map((border, idx) => (
-                          <NeighborCountry name={border} key={idx} />
+                          <Link to={'/code/' + border.toLowerCase()} key={idx} className='link-no-decoration'>
+                            <NeighborCountry name={border} />
+                          </Link>
                         ))
                       }
                     </div>

@@ -23,6 +23,7 @@ const App = () => {
       <Routes>
         <Route path='/' element={ <CountriesPage /> } />
         <Route path='/:countryName' element={ <CountryDetailPage /> } />
+        <Route path='/code/:countryCode' element={<CountryDetailPage />} />
       </Routes>
       </ThemeContext.Provider>
     </BrowserRouter>
