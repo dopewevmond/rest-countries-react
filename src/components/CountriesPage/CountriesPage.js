@@ -5,6 +5,7 @@ import ThemeContext from "../../helpers/Theme"
 import CountryCard from "../CountryCard/CountryCard"
 import Loading from '../Loading/Loading'
 import ErrorPage from '../ErrorPage/ErrorPage'
+import SearchFilter from '../SearchFilter/SearchFilter'
 
 const CountriesPage = () => {
   const [countries, setCountries] = useState([])
@@ -17,14 +18,14 @@ const CountriesPage = () => {
       const neededFieldsCountries = []
       const countriesResponse = await fetch('https://restcountries.com/v3.1/all')
       const countriesJson = await countriesResponse.json()
-      for (let cntry of countriesJson) {
+      for (let country of countriesJson) {
         neededFieldsCountries.push({
-          flag: cntry.flags.png,
-          name: cntry.name.common,
-          population: cntry.population,
-          region: cntry.region,
-          capital: (cntry.capital && cntry.capital[0]) || 'No capital',
-          countryCode: cntry.cca3
+          flag: country.flags.png,
+          name: country.name.common,
+          population: country.population,
+          region: country.region,
+          capital: (country.capital && country.capital[0]) || 'No capital',
+          countryCode: country.cca3
         })
       }
       return neededFieldsCountries
@@ -60,6 +61,7 @@ const CountriesPage = () => {
                 {
                   error === false ? (
                     <div className="container">
+                      <SearchFilter />
                     <div className="flex-4-cols pt-1">
                       {
                         countries.map(({ flag, name, population, region, capital, countryCode }) => (
