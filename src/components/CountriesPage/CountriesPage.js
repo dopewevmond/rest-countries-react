@@ -9,6 +9,9 @@ import SearchFilter from '../SearchFilter/SearchFilter'
 
 const CountriesPage = () => {
   const [countries, setCountries] = useState([])
+  const [countryQuery, setCountryQuery] = useState('')
+  const [regionQuery, setRegionQuery] = useState('')
+  const [filteredCountries, setFilteredCountries] = useState([])
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(false)
 
@@ -45,6 +48,13 @@ const CountriesPage = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
+  useEffect(() => {
+    setFilteredCountries(countries.filter((country) => country.region.toLowerCase().includes(regionQuery))
+                                  .filter((country) => country.name.toLowerCase().includes(countryQuery))
+    )
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [countries, countryQuery, regionQuery])
+
 
   return (
     <ThemeContext.Consumer>
@@ -61,10 +71,15 @@ const CountriesPage = () => {
                 {
                   error === false ? (
                     <div className="container">
-                      <SearchFilter />
+                      <SearchFilter
+                        setCountryQuery={setCountryQuery}
+                        setRegionQuery={setRegionQuery}
+                        countryQuery={countryQuery}
+                        regionQuery={regionQuery}
+                      />
                     <div className="flex-4-cols pt-1">
                       {
-                        countries.map(({ flag, name, population, region, capital, countryCode }) => (
+                        filteredCountries.map(({ flag, name, population, region, capital, countryCode }) => (
                           <Link to={'/code/' + countryCode.toLowerCase() } key={name} className='link-no-decoration'>
                             <CountryCard
                               flag={flag}
